@@ -41,16 +41,6 @@ margin: 15px 0 20px 0;}
 
 /* ****************************  header   *****************************/
 
-header img{
-width: 100%;
-max-width: 5rem;
-min-width: 3rem;
-height: auto;}
-
-header img:hover{
-scale: 1.1;
-transition: 2s ease;}
-
 header{
 display: flex;
 align-items: center;
@@ -61,7 +51,35 @@ box-shadow:#222 0 6px 20px ;
 z-index: 999;
 position: sticky;
 top: 0;
-left: 0;}
+left: 0;
+
+animation-name: headslide;
+animation-timing-function: linear;
+animation-duration: 1s;}
+@keyframes headslide{
+    0%{
+        transform: translateY(-10rem);
+    }
+    50%{
+        transform: translateY(-5rem);
+    }
+    100%{
+        transform: translateY(0rem);
+    }
+}
+
+
+header img{
+width: 100%;
+max-width: 5rem;
+min-width: 3rem;
+height: auto;}
+
+
+
+header img:hover{
+scale: 1.1;
+transition: 2s ease;}
 
 .navigation{
 display: flex;
