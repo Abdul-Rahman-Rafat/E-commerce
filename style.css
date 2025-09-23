@@ -1,0 +1,137 @@
+/*                                                      global */
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: cursive;
+}
+html {scroll-behavior: smooth;}
+body {width: 100%;}
+
+h1 {
+font-size: 50px;
+line-height: 64px;
+padding: 0 .5em;
+
+color: #eee;}
+
+h2 {
+font-size: 40px;
+line-height: 54px;
+padding: 0 .5em;
+
+color: #eee;}
+
+h4 {
+font-size: 20px;
+color: #eee;}
+
+h6 {
+font-weight: 700;
+font-size: 12px;}
+
+p {
+font-size: 16px;
+color: #465b52;
+margin: 15px 0 20px 0;}
+/* ****************************     global  ****************************  */
+
+
+
+
+/* ****************************  header   *****************************/
+
+header img{
+width: 100%;
+max-width: 5rem;
+min-width: 3rem;
+height: auto;}
+
+header img:hover{
+scale: 1.1;
+transition: 2s ease;}
+
+header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+background-color: #eee;
+padding: .5em 1.5em;
+box-shadow:#222 0 6px 20px ;
+z-index: 999;
+position: sticky;
+top: 0;
+left: 0;}
+
+.navigation{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.navigation li{
+list-style: none;
+padding: 1em 1.5em;
+position: relative;}
+
+.navigation li a{
+text-decoration: none;
+font-size: 1.3em;
+font-weight: 900;
+color: #222;}
+
+.navigation li a:hover ,
+.navigation li a.home{
+color: rgb(81, 179, 218);
+transition: .5s ease;}
+
+.navigation li:not(.icon) a.home::after,
+.navigation li:not(.icon) a:hover::after {
+content: "";
+display: block;
+width: 30%;
+height: 3px;
+background: rgb(81, 179, 218);
+position: absolute;}
+
+/* ****************************   header   ****************************  */
+
+
+/**************************** show *****************************/
+.shop_show{
+width: 100%;
+background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+url('assets/all_background.png') no-repeat center center/cover;
+height: 100vh;
+background-repeat:no-repeat ;
+background-size: cover;
+background-position: top 30% right 0;
+/*  */
+display: flex;
+justify-content: end;
+flex-direction: column;
+
+}
+.shop_now_button{
+margin-top: 1rem;
+padding: 0.5rem 1rem;
+font-size: larger;
+background-color: #48b7ca;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+
+}
+.shop_now_button:hover {background-color: #333;}
+
+.shop_now_button:hover::after {content: " ↓ ";font-size: larger;}
+
+/**************************** show *****************************/
+
+
+/**************************** product *****************************/
+
+
+
+
