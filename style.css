@@ -150,7 +150,9 @@ transition: background-color 0.3s ease;}
 /**************************** /show *****************************/
 
 
-.head{text-align: center;color: #333;padding: 2em 1.5em;}
+.head{text-align: center;color: #eee ; margin: 2em 0 2em 0; padding:.5em 0 .5em 0 ;
+background-color: #48b7ca;
+}
 /**************************** Services & products *****************************/
 .services{
 display: flex;
