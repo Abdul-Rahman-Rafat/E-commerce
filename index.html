@@ -9,14 +9,15 @@
 </head>
 <body>
 
+
+
 <header >
 
-    <div class="logo"> <a href="index.html"> <img  src="assets/logo.png"> </a>  </div>    
+    <div class="logo" > <a href="index.html"> <img  src="assets/logo.png"> </a>  </div>    
 
     <div>
         <ul class="navigation">
             <li><a class="home" href="index.html">Home</a></li>
-            <li><a href="#">Products</a></li>
             <li><a href="#">About us</a></li>
             <li><a href="#">Contact us</a></li>
 
@@ -31,7 +32,7 @@
 
 <section class="shop_show">
     <div >
-        <h2>Quality Hardware</h2>
+        <h2>Quality Products</h2>
         <h1>We have a good collection</h1>
     </div>
     <a href="#products_head"> <button class="shop_now_button" > Shop Now  </button></a>
@@ -43,22 +44,22 @@
 
 <section class="services">
 
-    <div class="card offers">
+    <div class="service offers">
         <img src="assets/offers.png">
         <h3>Hot Offers</h3>
         
     </div>
-    <div class="card order">
+    <div class="service order">
         <img src="assets/online_order.png">
         <h3>Online Orders</h3>
         
     </div>
-    <div class="card shippment">
+    <div class="service shippment">
         <img src="assets/motor.png">
         <h3>Fast Shippment</h3>
         
     </div>
-    <div class="card response">
+    <div class="service response">
         <img src="assets/customer_service2.png">
         <h3>Fast Response</h3>
         
@@ -68,7 +69,22 @@
 
 <h1 class="head" id ="products_head">Featured Products</h1>
 
-<section class="products" id="products"></section>
+<section class="products_container">
+   <div class="category">
+    <ul id="categoryFilter">
+      <li data-filter="all">All</li>
+      <li data-filter="men's clothing">Men Clothes</li>
+      <li data-filter="women's clothing">Women Clothes</li>
+      <li data-filter="electronics">Electronics</li>
+      <li data-filter="jewelery">Jewelery</li>
+    </ul>
+  </div>
+
+    <div class="products" id="products">
+
+</div>
+</section>
+
 
 
 
