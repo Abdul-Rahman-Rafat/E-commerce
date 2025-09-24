@@ -148,7 +148,20 @@ transition: background-color 0.3s ease;
 /**************************** show *****************************/
 
 
-/**************************** product *****************************/
+.services_head{text-align: center;color: #333;padding: 1em 1.5em;}
+/**************************** Services *****************************/
+.services{
+display: flex;
+align-items: center;
+justify-content: space-evenly;}
+.services i{
+    justify-items: center;
+}
+
+
+
+
+/**************************** Services *****************************/
 
 
 
