@@ -13,13 +13,13 @@
 
 <header >
 
-    <div class="logo" > <a href="index.html"> <img  src="assets/logo.png"> </a>  </div>    
+    <div class="logo" > <a href="index.html"> <img src="assets/logo2.png" alt=""> </a>  </div>    
 
     <div>
         <ul class="navigation">
             <li><a class="home" href="index.html">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact us</a></li>
+            <li><a href="#footer_id">About us</a></li>
+            <li><a href="#footer_id">Contact us</a></li>
 
             <li class="icon"><a href="cart.html"><i class="fa-solid fa-bag-shopping fa-xl"></i></a></li>
             <li class="icon"><a href="fav.html"><i class="fa-regular fa-heart fa-xl"></i></a></li>
@@ -30,7 +30,7 @@
 </header>
 
 
-<section class="shop_show">
+<section class="shop_show" id="show_id">
     <div >
         <h2>Quality Products</h2>
         <h1>We have a good collection</h1>
@@ -55,7 +55,7 @@
         
     </div>
     <div class="service shippment">
-        <img src="assets/motor.png">
+        <img src="assets/motor2.png">
         <h3>Fast Shippment</h3>
         
     </div>
@@ -80,6 +80,12 @@
     </ul>
   </div>
 
+
+
+    <div class="search_box">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    </div>
+
     <div class="products" id="products">
 
 </div>
@@ -87,8 +93,43 @@
 
 
 
+<footer id="footer_id">
+    <div class="col">
+        <img id="logo_footer" src="assets/logo3.png" alt="">
+        <h4>Contact</h4>
+        <p><Strong>Address : </Strong>Shobra El-khaima , New Street</p>
+        <p><Strong>Phone : </Strong>+201234567890</p>
+        <div class="follow">
+            <h4>Follow us</h4>
+            <div class="social">
+                <i class="fab fa-facebook-f fa-lg"></i>
+                <i class="fab fa-twitter fa-lg"></i>
+                <i class="fab fa-instagram fa-lg"></i>
+                <i class="fab fa-linkedin fa-lg"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h4>About</h4>
+        <h6>About us</h6>
+        <h6>Contact us</h6>
+        <h6>Terms and conditions</h6>
+        <h6>Delivery Info</h6>
+    </div>
 
 
+    <div class="col sponsors">
+       <h4>sponsors</h4>
+       <img src="assets/dell.png" alt="">
+       <img src="assets/intel.png" alt="">
+       <img src="assets/amd.png" alt="">
+       <img src="assets/nvidia.png" alt="">
+    </div>
+</footer>
+
+
+<a href="#show_id"><button class="up">⬆</button></a>
 
 
 <script src="script.js"></script>
