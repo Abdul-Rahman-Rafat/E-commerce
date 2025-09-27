@@ -317,3 +317,122 @@ transition: 1.5s ease;}
 
 /* **************************** footer **************************** */
 
+
+
+/* responsive************************ */
+@media (max-width: 768px) {
+  /* زرار المنيو */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: #222;
+    font-size: 28px;
+    z-index: 1001;
+  }
+
+ 
+  .navigation {
+    flex-direction: column;
+    width: 100%;
+    background: #eee;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+
+    /* الحركة */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .navigation.active {
+    max-height: 500px; 
+    padding: 1em 0;
+  }
+
+  .navigation li {
+    text-align: center;
+    padding: 1em 0;
+  }
+
+  header {
+    justify-content: space-between;
+    padding: 1em;
+  }
+  header .logo {
+    flex-grow: 2;
+  }
+
+  h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .shop_now_button {
+    width: auto;
+    font-size: 16px;
+    padding: 0.5em 1.5em;
+  }
+
+  .services {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .category ul {
+    flex-direction: column;
+    font-size: 18px;
+  }
+  .category li {
+    margin: 5px 0;
+  }
+
+  #searchInput {
+    width: 90%;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 2em;
+  }
+  footer .col {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .navigation {
+    display: flex !important;
+    flex-direction: row !important;
+    width: auto !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .navigation li {
+    padding: 1em 1.5em !important;
+    text-align: initial !important;
+  }
+}
+/* responsive************************ */

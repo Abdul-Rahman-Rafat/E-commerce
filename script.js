@@ -1,3 +1,26 @@
+const menuToggle = document.querySelector(".menu-toggle i");
+const navigation = document.querySelector(".navigation");
+
+menuToggle.addEventListener("click", () => {
+  navigation.classList.toggle("active");
+
+  if (navigation.classList.contains("active")) {
+    menuToggle.classList.remove("fa-bars");
+    menuToggle.classList.add("fa-times");
+  } else {
+    menuToggle.classList.remove("fa-times");
+    menuToggle.classList.add("fa-bars");
+  }
+});
+
+
+
+
+
+
+
+
+
 async function FetchDummyData() {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
