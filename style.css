@@ -184,6 +184,9 @@ transition: transform 0.2s ease;}
 
 .card:hover , .service:hover {transform: translateY(-5px);}
 
+.btn { background: #0d6efd; color: white;  padding: 8px 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; width: 10em ;}
+.btn:hover{background-color: #333; color: white;}
+
 .card img , .service img {
 
 max-width: 150px;
@@ -203,6 +206,8 @@ font-weight: bold;
 text-align: center;
 margin: 5px 0;}
 
+.fa-heart.active {color: red;background-color: white;}
+
 .card .icons {
 display: flex;
 align-items: center;
@@ -212,7 +217,7 @@ padding: 2em;}
 
 .card .icons i:hover{
 scale: 1.2;
-color: #48b7ca;
+color: red;
 transition: .5s ease ;
 }
 
@@ -321,7 +326,6 @@ transition: 1.5s ease;}
 
 /* responsive************************ */
 @media (max-width: 768px) {
-  /* زرار المنيو */
   .menu-toggle {
     display: block;
     cursor: pointer;
@@ -341,7 +345,6 @@ transition: 1.5s ease;}
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     z-index: 1000;
 
-    /* الحركة */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
@@ -436,3 +439,76 @@ transition: 1.5s ease;}
   }
 }
 /* responsive************************ */
+
+
+
+/*  fav&cart */
+.fav_head , .cart_head{
+margin: 2em 0 2em 0;
+background-color: rgb(71, 206, 206);
+}
+.product {
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid #ccc;
+padding: 10px;}
+
+#favoritesList img , #cartItems img {
+max-width: 100px;
+max-height: 100px;
+object-fit: contain;
+margin-right: 2em;}
+
+#favoritesList button , #cartItems button {padding: 5px 10px;}
+/* /fav&cart */
+
+/* cart */
+#cartItems .controls {
+display: flex;
+align-items: center;
+gap: 10px;}
+
+.total-box {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f0f8ff; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+.total-box p {margin: 0;  font-weight: bold;}
+
+.total-box strong {color: #008080; }
+
+.checkout-btn {
+margin-top: 15px;
+padding: 12px 24px;
+background-color: #008080;
+color: white;
+font-size: 1rem;
+font-weight: bold;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+transition: background-color 0.3s ease;}
+
+.checkout-btn:hover {background-color: #006666;}
+
+/* cart */
+
+
+
+
+
+
+
+/*  */
+/*  */
+/*  */
+/*  */

@@ -6,10 +6,9 @@
     <title>TechGear</title>
     <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"  />
+
 </head>
 <body>
-
-
 
 <header>
   <div class="logo">
@@ -26,11 +25,15 @@
       <li><a href="#footer_id">About us</a></li>
       <li><a href="#footer_id">Contact us</a></li>
       <li class="icon"><a href="cart.html"><i class="fa-solid fa-bag-shopping fa-xl"></i></a></li>
-      <li class="icon"><a href="fav.html"><i class="fa-regular fa-heart fa-xl"></i></a></li>
+      <li class="icon"><a href="fav.html"><i class="fa fa-solid fa-heart fa-xl"></i></a></li>
       <li class="icon"><a href="checkout.html"><i class="fa-solid fa-cart-shopping fa-xl"></i></a></li>
     </ul>
   </div>
 </header>
+
+
+<h1 class="fav_head" id="fav_head_id">Your Favorite Products</h1>
+  <div id="favoritesList"></div>
 
 
 
@@ -71,9 +74,45 @@
 </footer>
 
 
-<a href="#show_id"><button class="up">⬆</button></a>
+<a href="#fav_head_id"><button class="up">⬆</button></a>
 
 
-<script src="script.js"></script>
+<script>
+    function renderFavorites() {
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      const container = document.getElementById("favoritesList");
+      container.innerHTML = "";
+
+      if (favorites.length === 0) {
+        container.innerHTML = "<p>You have no favorite products yet.</p>";
+        return;
+      }
+
+      favorites.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px; height:7em;">
+            <img src="${item.image}" alt="${item.title}" />
+            <div>
+              <h3>${item.title}</h3>
+              <p>Price: $${item.price}</p>
+            </div>
+          </div>
+          <button onclick="removeFavorite(${index})">🗑️ Remove</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function removeFavorite(index) {
+      let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+      favs.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favs));
+      renderFavorites();
+    }
+
+    renderFavorites();
+  </script>
 </body>
 </html>

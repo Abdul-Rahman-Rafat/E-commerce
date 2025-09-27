@@ -13,14 +13,6 @@ menuToggle.addEventListener("click", () => {
   }
 });
 
-
-
-
-
-
-
-
-
 async function FetchDummyData() {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
@@ -36,16 +28,31 @@ FetchDummyData().then((products) => {
   const searchInput = document.getElementById("searchInput");
   let selectedCategory = "all";
 
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   products.forEach((product) => {
     const card = document.createElement("div");
     card.classList.add("card");
     card.setAttribute("data-category", product.category);
 
+    const isFav = favorites.find((item) => item.id == product.id);
+
     card.innerHTML = `
       <div class="icons">
-        <i class="fa-solid fa-cart-shopping fa-xl icon"></i>
-        <i class="fa-regular fa-heart fa-xl icon"></i>
+        <button class="btn add-cart" 
+                data-id="${product.id}"
+                data-title="${product.title}"
+                data-price="${product.price}"
+                data-img="${product.image}">Add to cart</button>
+
+        <i class="fa-heart fa-xl icon add-fav ${isFav ? 'fa-solid active' : 'fa-regular'}"
+           data-id="${product.id}"
+           data-title="${product.title}"
+           data-price="${product.price}"
+           data-img="${product.image}"></i>
       </div>
+      
       <img src="${product.image}" alt="${product.title}">
       <h3>${product.title}</h3>
       <p>$${product.price}</p>
@@ -54,6 +61,66 @@ FetchDummyData().then((products) => {
     container.appendChild(card);
   });
 
+  
+
+  document.querySelectorAll(".add-cart").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const product = {
+        id: btn.dataset.id,
+        title: btn.dataset.title,
+        price: btn.dataset.price,
+        image: btn.dataset.img,
+        quantity: 1
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existing = cart.find(item => item.id == product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+    });
+  });
+
+
+
+  document.querySelectorAll(".add-fav").forEach((icon) => {
+    icon.addEventListener("click", () => {
+      const product = {
+        id: icon.dataset.id,
+        title: icon.dataset.title,
+        price: icon.dataset.price,
+        image: icon.dataset.img
+      };
+
+      let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+
+      const index = favs.findIndex(item => item.id == product.id);
+
+      if (index > -1) {
+
+        favs.splice(index, 1);
+        icon.classList.remove("fa-solid", "active");
+        icon.classList.add("fa-regular");
+      } else {
+
+        favs.push(product);
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid", "active");
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favs));
+    });
+  });
+
+
+
+
+  
   function filterProducts() {
     const term = searchInput.value.toLowerCase();
 
@@ -64,11 +131,7 @@ FetchDummyData().then((products) => {
       const matchCategory = selectedCategory === "all" || category === selectedCategory;
       const matchSearch = title.includes(term);
 
-      if (matchCategory && matchSearch) {
-        card.style.display = "flex";
-      } else {
-        card.style.display = "none";
-      }
+      card.style.display = (matchCategory && matchSearch) ? "flex" : "none";
     });
   }
 
