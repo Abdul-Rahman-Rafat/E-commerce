@@ -34,6 +34,33 @@
 
 
 
+<div class="checkout-container">
+    <h2>Order Summary</h2>
+    <div id="checkoutItems"></div>
+    <div id="checkoutTotal" class="total-summary"></div>
+
+
+
+    <form id="customerForm" style="margin-top: 30px;">
+      <label>
+        Name:<br>
+        <input type="text" id="customerName" required>
+      </label><br><br>
+
+      <label>
+        Address:<br>
+        <input type="text" id="customerAddress" required>
+      </label><br><br>
+
+      <label>
+        Phone Number:<br>
+        <input type="tel" id="customerPhone" required>
+      </label>
+    </form>
+
+
+    <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
+  </div>
 
 
 
@@ -77,5 +104,59 @@
 
 
 <script src="script.js"></script>
+<script>
+    function renderCheckout() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("checkoutItems");
+      const totalDiv = document.getElementById("checkoutTotal");
+      container.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.innerHTML = "";
+        document.querySelector(".confirm-btn").style.display = "none";
+        return;
+      }
+
+      cart.forEach((item) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("checkout-item");
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="checkout-item-info">
+            <h4>${item.title}</h4>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Price: $${item.price}</p>
+          </div>
+        `;
+        container.appendChild(itemDiv);
+        total += item.price * item.quantity;
+      });
+
+      totalDiv.innerHTML = `Total: $${total.toFixed(2)}`;
+    }
+
+    function confirmOrder() {
+  const name = document.getElementById("customerName").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+
+  if (!name || !address || !phone) {
+    alert("Please fill in all customer details.");
+    return;
+  }
+
+  // localStorage.setItem("customerInfo", JSON.stringify({ name, address, phone }));
+
+  alert(`✅ Order confirmed!\n\nThank you, ${name}.\nYour items will be shipped to:\n${address}`);
+
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
+}
+
+
+    renderCheckout();
+  </script>
 </body>
 </html>

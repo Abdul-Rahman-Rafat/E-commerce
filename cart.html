@@ -89,8 +89,13 @@
       container.innerHTML = "";
 
       if (cartItems.length === 0) {
-  container.innerHTML = "<p>Your cart is empty.</p>";
-  document.getElementById("total_cart").innerHTML = "Total price: 0$"; // 🧼 امسح السعر الإجمالي
+  container.innerHTML = `
+    <p>Your cart is empty.</p>
+    <a href="index.html">
+      <button class="back-btn">Back to Shop</button>
+    </a>
+  `;
+  document.getElementById("total_cart").innerHTML = "Total price: 0$";
   return;
 }
 
