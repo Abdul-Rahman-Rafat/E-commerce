@@ -32,7 +32,32 @@
   </div>
 </header>
 
+<div class="user_details">
+  <div class="checkout-header">
+    <h1>Checkout</h1>
+    <p>Please enter your details to complete the purchase.</p>
+  </div>
+    
+  <form id="customerForm" style="margin-top: 30px;">
+        <label>
+          Name:<br>
+          <input type="text" id="customerName" required>
+        </label><br><br>
 
+        <label>
+          Address:<br>
+          <input type="text" id="customerAddress" required>
+        </label><br><br>
+
+        <label>
+          Phone Number:<br>
+          <input type="tel" id="customerPhone" required>
+        </label>
+      </form>
+
+</div>
+
+<br><br><hr>
 
 <div class="checkout-container">
     <h2>Order Summary</h2>
@@ -41,22 +66,7 @@
 
 
 
-    <form id="customerForm" style="margin-top: 30px;">
-      <label>
-        Name:<br>
-        <input type="text" id="customerName" required>
-      </label><br><br>
-
-      <label>
-        Address:<br>
-        <input type="text" id="customerAddress" required>
-      </label><br><br>
-
-      <label>
-        Phone Number:<br>
-        <input type="tel" id="customerPhone" required>
-      </label>
-    </form>
+    
 
 
     <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
@@ -143,13 +153,12 @@
   const phone = document.getElementById("customerPhone").value.trim();
 
   if (!name || !address || !phone) {
-    alert("Please fill in all customer details.");
+    alert("complete the details to confirm the order .");
     return;
   }
 
-  // localStorage.setItem("customerInfo", JSON.stringify({ name, address, phone }));
 
-  alert(`✅ Order confirmed!\n\nThank you, ${name}.\nYour items will be shipped to:\n${address}`);
+  alert(`Thank you for using TechGear sir , ${name}.\n  your items will be shipped to:\n${address}`);
 
   localStorage.removeItem("cart");
   window.location.href = "index.html";

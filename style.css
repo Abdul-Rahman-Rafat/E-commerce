@@ -556,16 +556,29 @@ margin-top: 20px;}
 
 
 
+.user_details{margin-top: 6em;}
+
+.user_details h1{color: #222; margin-bottom: 1em;
+text-align: center;
+font-size: 5em;
+font-weight: bold;
+color: #008080;}
+.user_details p{font-size: 1.2em; text-align: center; margin-bottom: 2em; color: #333;}
+
+
+
 #customerForm input {
-width: 100%;
+width: 99%;
 padding: 8px;
 border: 1px solid #ccc;
 border-radius: 6px;
-margin-top: 5px;}
+margin-top: 5px;
+margin-left: 1em;}
 
 #customerForm label {
 font-weight: bold;
-color: #333;}
+color: #333;
+margin-left: 1em;}
 
 
 

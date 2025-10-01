@@ -29,7 +29,6 @@ FetchDummyData().then((products) => {
   let selectedCategory = "all";
 
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   products.forEach((product) => {
     const card = document.createElement("div");
