@@ -444,8 +444,11 @@ transition: 1.5s ease;}
 
 /*  fav&cart */
 .fav_head , .cart_head{
-margin: 2em 0 2em 0;
-background-color: rgb(71, 206, 206);
+margin: 1em 0 0 0;
+text-align: center;
+padding: .5em 0 .5em 0 ;
+color: #008080;
+font-size: 5em;
 }
 .product {
 display: flex;
