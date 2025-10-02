@@ -71,7 +71,7 @@ FetchDummyData().then((products) => {
         image: btn.dataset.img,
         quantity: 1
       };
-
+      alert("Item added to cart!");
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       const existing = cart.find(item => item.id == product.id);
