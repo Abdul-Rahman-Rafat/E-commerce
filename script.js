@@ -1,18 +1,18 @@
+//responsive nav 
 const menuToggle = document.querySelector(".menu-toggle i");
 const navigation = document.querySelector(".navigation");
 
 menuToggle.addEventListener("click", () => {
-  navigation.classList.toggle("active");
+navigation.classList.toggle("active");
 
-  if (navigation.classList.contains("active")) {
-    menuToggle.classList.remove("fa-bars");
-    menuToggle.classList.add("fa-times");
-  } else {
-    menuToggle.classList.remove("fa-times");
-    menuToggle.classList.add("fa-bars");
-  }
+menuToggle.classList.toggle("fa-times");
+menuToggle.classList.toggle("fa-bars");
+
 });
 
+
+
+//fetch data
 async function FetchDummyData() {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
@@ -149,3 +149,207 @@ FetchDummyData().then((products) => {
 
   searchInput.addEventListener("input", filterProducts);
 });
+
+
+
+// fav
+
+ function renderFavorites() {
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      const container = document.getElementById("favoritesList");
+      container.innerHTML = "";
+
+
+      if (favorites.length === 0) {
+container.innerHTML = `
+    <p>You have no favorite products yet.</p>
+    <a href="index.html">
+      <button class="back-btn">Back to Shop</button>
+    </a>
+  `;
+          return;
+      }
+
+      
+      favorites.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px; height:7em;">
+            <img src="${item.image}" alt="${item.title}" />
+            <div>
+              <h3>${item.title}</h3>
+              <p>Price: $${item.price}</p>
+            </div>
+          </div>
+          <button onclick="removeFavorite(${index})">🗑️ Remove</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function removeFavorite(index) {
+      let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+      favs.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favs));
+      renderFavorites();
+    }
+
+    
+// /fav
+
+
+
+    // cart
+
+    function renderCart() {
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cartItems");
+      container.innerHTML = "";
+
+      if (cartItems.length === 0) {
+  container.innerHTML = `
+    <p>Your cart is empty.</p>
+    <a href="index.html">
+      <button class="back-btn">Back to Shop</button>
+    </a>
+  `;
+  document.getElementById("total_cart").innerHTML = "Total price: 0$";
+  return;
+}
+
+      cartItems.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="${item.image}" alt="${item.title}" />
+            <div>
+              <h3>${item.title}</h3>
+              <p>Price: $${item.price}</p>
+            </div>
+          </div>
+          <div class="controls">
+            
+
+            <button onclick="decrease(${index})">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="increase(${index})">+</button>
+            <button onclick="removeItem(${index})">🗑️</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+  let total = 0;
+  cartItems.forEach((item) => {
+    total += item.price * item.quantity;
+  });
+
+ document.getElementById("total_cart").innerHTML = `
+  <p><strong>Total price:</strong> $${total.toFixed(2)}</p>
+  <a href="checkout.html">
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </a>
+`;
+}
+    
+
+    function increase(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity += 1;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function decrease(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+      } else {
+        cart.splice(index, 1); 
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    // /cart
+
+
+//checkout 
+function renderCheckout() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("checkoutItems");
+      const totalDiv = document.getElementById("checkoutTotal");
+      container.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.innerHTML = "";
+        document.querySelector(".confirm-btn").style.display = "none";
+        return;
+      }
+
+      cart.forEach((item) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("checkout-item");
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="checkout-item-info">
+            <h4>${item.title}</h4>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Price: $${item.price}</p>
+          </div>
+        `;
+        container.appendChild(itemDiv);
+        total += item.price * item.quantity;
+      });
+
+      totalDiv.innerHTML = `Total: $${total.toFixed(2)}`;
+    }
+
+    function confirmOrder() {
+  const name = document.getElementById("customerName").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+
+  if (!name || !address || !phone) {
+    alert("complete the details to confirm the order .");
+    return;
+  }
+
+
+  alert(`Thank you for using TechGear sir , ${name}.\n  your items will be shipped to:\n${address}`);
+
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
+}
+//checkout 
+
+
+
+//call functions based on page
+
+if (document.getElementById("products")) {
+  FetchDummyData();
+}
+    if (document.getElementById("cartItems")) {
+  renderCart();
+}
+
+if (document.getElementById("favoritesList")) {
+  renderFavorites();
+}
+
+if (document.getElementById("checkoutItems")) {
+  renderCheckout();
+
+}
