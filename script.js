@@ -26,16 +26,18 @@ async function FetchDummyData() {
 FetchDummyData().then((products) => {
   const container = document.getElementById("products");
   const searchInput = document.getElementById("searchInput");
-  let selectedCategory = "all";
 
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  let selectedCategory = "all";//default we used it in filter func
+
+  //--
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];///
 
   products.forEach((product) => {
     const card = document.createElement("div");
     card.classList.add("card");
     card.setAttribute("data-category", product.category);
 
-    const isFav = favorites.find((item) => item.id == product.id);
+    const isFav = favorites.find((item) => item.id == product.id); //ليه == مش === عشان نوع الداتا بيختلف يعني ايه ؟ يعني  
 
     card.innerHTML = `
       <div class="icons">
@@ -59,6 +61,10 @@ FetchDummyData().then((products) => {
 
     container.appendChild(card);
   });
+
+  
+
+
 
   
 
@@ -86,6 +92,9 @@ FetchDummyData().then((products) => {
   });
 
 
+
+
+  
 
   document.querySelectorAll(".add-fav").forEach((icon) => {
     icon.addEventListener("click", () => {
@@ -134,6 +143,8 @@ FetchDummyData().then((products) => {
     });
   }
 
+
+  
   document.querySelectorAll("#categoryFilter li").forEach((item) => {
     item.addEventListener("click", () => {
       selectedCategory = item.getAttribute("data-filter");
@@ -149,6 +160,11 @@ FetchDummyData().then((products) => {
 
   searchInput.addEventListener("input", filterProducts);
 });
+
+
+
+
+
 
 
 
@@ -170,7 +186,7 @@ container.innerHTML = `
           return;
       }
 
-      
+      // بيجيبهم من الlocal storage  
       favorites.forEach((item, index) => {
         const div = document.createElement("div");
         div.classList.add("product");
@@ -227,6 +243,8 @@ container.innerHTML = `
             <div>
               <h3>${item.title}</h3>
               <p>Price: $${item.price}</p>
+              <p>Price of quantity : $${item.price * item.quantity}</p>
+
             </div>
           </div>
           <div class="controls">
@@ -283,6 +301,10 @@ container.innerHTML = `
     // /cart
 
 
+
+
+
+
 //checkout 
 function renderCheckout() {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -316,6 +338,10 @@ function renderCheckout() {
       totalDiv.innerHTML = `Total: $${total.toFixed(2)}`;
     }
 
+
+
+
+    
     function confirmOrder() {
   const name = document.getElementById("customerName").value.trim();
   const address = document.getElementById("customerAddress").value.trim();
@@ -341,6 +367,7 @@ function renderCheckout() {
 if (document.getElementById("products")) {
   FetchDummyData();
 }
+
     if (document.getElementById("cartItems")) {
   renderCart();
 }
