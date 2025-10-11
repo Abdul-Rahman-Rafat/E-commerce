@@ -26,6 +26,10 @@ async function FetchDummyData() {
 FetchDummyData().then((products) => {
   const container = document.getElementById("products");
   const searchInput = document.getElementById("searchInput");
+  //pagination
+  const itemsPerPage = 6;
+  let currentPage = 1;
+  const totalPages = Math.ceil(products.length / itemsPerPage); 
 
   let selectedCategory = "all";//default we used it in filter func
 
@@ -59,13 +63,42 @@ FetchDummyData().then((products) => {
       <p>$${product.price}</p>
     `;
 
+    
     container.appendChild(card);
   });
 
   
+    //pagination
+    function showPage(page) {
+      const cards = document.querySelectorAll(".card");
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      cards.forEach((card, index) => {
+        card.style.display = (index >= start && index < end) ? "flex" : "none";
+      });
+
+      document.getElementById("pageInfo").textContent = `Page ${currentPage} of ${totalPages}`;
 
 
+      document.getElementById("prevBtn").disabled = currentPage === 1;
+      document.getElementById("nextBtn").disabled = currentPage === totalPages;
+    }
+    showPage(currentPage);
 
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+    
   
 
   document.querySelectorAll(".add-cart").forEach((btn) => {
@@ -366,6 +399,7 @@ function renderCheckout() {
 
 if (document.getElementById("products")) {
   FetchDummyData();
+
 }
 
     if (document.getElementById("cartItems")) {
